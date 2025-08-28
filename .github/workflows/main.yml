@@ -1,0 +1,17 @@
+name: Debug with tmate
+
+on:
+  workflow_dispatch: # Cho phép chạy thủ công từ GitHub Actions
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true # chỉ bạn (người trigger) mới truy cập được
+          arguments: -F  # chạy tmate foreground mode
